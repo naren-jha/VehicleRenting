@@ -10,6 +10,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Objects;
+
 @Slf4j
 @Service
 public class BookingService {
@@ -22,7 +24,21 @@ public class BookingService {
 
     public BookingResponse bookVehicle(BookingDTO bookingDTO) {
         BookingStrategy bookingStrategy = bookingStrategyFactory.getBookingStrategy(BookingStrategyType.LOWEST_PRICE);
-        return bookingStrategy.bookVehicle(this, bookingDTO);
+        Vehicle selectedVehicle = bookingStrategy.selectVehicle(this, bookingDTO);
+
+        BookingResponse bookingResponse = BookingResponse.builder().build();
+        if (Objects.nonNull(selectedVehicle)) {
+            bookingResponse.setVehicleNumber(selectedVehicle.getNumber());
+            bookingResponse.setBranch(selectedVehicle.getBranch());
+            bookingResponse.setMessage(String.format("%s from %s booked.",
+                    bookingResponse.getVehicleNumber(), bookingResponse.getBranch().getName()));
+
+            addBooking(bookingDTO, selectedVehicle);
+        }
+        else {
+            bookingResponse.setMessage(String.format("NO %s AVAILABLE", bookingDTO.getVehicleType().toString()));
+        }
+        return bookingResponse;
     }
 
     public void addBooking(BookingDTO bookingDTO, Vehicle vehicle) {

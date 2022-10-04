@@ -28,7 +28,7 @@ public class LowestPriceBookingStrategy implements BookingStrategy {
     private BranchService branchService;
 
     @Override
-    public BookingResponse bookVehicle(BookingService bookingService, BookingDTO bookingDTO) {
+    public Vehicle selectVehicle(BookingService bookingService, BookingDTO bookingDTO) {
         List<Vehicle> vehicles = vehicleService.getVehiclesByType(bookingDTO.getVehicleType());
         SortedMap<Double, Vehicle> priceVehicleMap = new TreeMap<>();
         for (Vehicle vehicle : vehicles) {
@@ -38,19 +38,7 @@ public class LowestPriceBookingStrategy implements BookingStrategy {
             }
         }
 
-        BookingResponse bookingResponse = BookingResponse.builder().build();
-        if (priceVehicleMap.size() > 0) {
-            Vehicle matchingVehicle = priceVehicleMap.entrySet().iterator().next().getValue();
-            bookingResponse.setVehicleNumber(matchingVehicle.getNumber());
-            bookingResponse.setBranch(matchingVehicle.getBranch());
-            bookingResponse.setMessage(String.format("%s from %s booked.", bookingResponse.getVehicleNumber(), bookingResponse.getBranch().getName()));
-
-            bookingService.addBooking(bookingDTO, matchingVehicle);
-        }
-        else {
-            bookingResponse.setMessage(String.format("NO %s AVAILABLE", bookingDTO.getVehicleType().toString()));
-        }
-        return bookingResponse;
+        return priceVehicleMap.size() > 0 ? priceVehicleMap.entrySet().iterator().next().getValue() : null;
     }
 
     @Override
