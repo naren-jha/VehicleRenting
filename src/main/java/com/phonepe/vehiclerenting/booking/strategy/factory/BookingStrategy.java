@@ -6,6 +6,6 @@ import com.phonepe.vehiclerenting.vehicle.Vehicle;
 
 public interface BookingStrategy {
 
-    Vehicle selectVehicle(BookingService bookingService, BookingDTO bookingDTO);
+    Vehicle selectVehicle(BookingDTO bookingDTO);
     BookingStrategyType bookingStrategyType();
 }

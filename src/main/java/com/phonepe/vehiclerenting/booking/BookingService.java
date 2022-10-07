@@ -24,7 +24,7 @@ public class BookingService {
 
     public BookingResponse bookVehicle(BookingDTO bookingDTO) {
         BookingStrategy bookingStrategy = bookingStrategyFactory.getBookingStrategy(BookingStrategyType.LOWEST_PRICE);
-        Vehicle selectedVehicle = bookingStrategy.selectVehicle(this, bookingDTO);
+        Vehicle selectedVehicle = bookingStrategy.selectVehicle(bookingDTO);
 
         BookingResponse bookingResponse = BookingResponse.builder().build();
         if (Objects.nonNull(selectedVehicle)) {

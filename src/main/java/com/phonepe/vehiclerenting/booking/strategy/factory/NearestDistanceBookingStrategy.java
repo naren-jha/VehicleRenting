@@ -14,7 +14,7 @@ import org.springframework.stereotype.Component;
 public class NearestDistanceBookingStrategy implements BookingStrategy {
 
     @Override
-    public Vehicle selectVehicle(BookingService bookingService, BookingDTO bookingDTO) {
+    public Vehicle selectVehicle(BookingDTO bookingDTO) {
         // TODO: to be implemented when needed
         throw new NotImplementedBookingStrategyException("NearestDistanceRentalStrategy is not yet supported.");
     }

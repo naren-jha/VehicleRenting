@@ -27,7 +27,7 @@ public class LowestPriceBookingStrategy implements BookingStrategy {
     private BranchService branchService;
 
     @Override
-    public Vehicle selectVehicle(BookingService bookingService, BookingDTO bookingDTO) {
+    public Vehicle selectVehicle(BookingDTO bookingDTO) {
         List<Vehicle> vehicles = vehicleService.getVehiclesByType(bookingDTO.getVehicleType());
         SortedMap<Double, Vehicle> priceVehicleMap = new TreeMap<>();
         for (Vehicle vehicle : vehicles) {
