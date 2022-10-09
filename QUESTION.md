@@ -2,21 +2,23 @@
 
 ## Vehicle renting
 
-You have to design and implement a Vehicle Rental Service which allows users to rent a given type of Vehicle for a given time slot. Requirements:
-* This Vehicle Rental Service will be operational only in one city (Delhi) which will have multiple branches (eg. Vasant Vihar Branch, CP branch, etc).
-* Each branch can have three different types of vehicles (VehicleType) : Sedan, Hatchback, SUV. There could be any number of vehicles of each type in a branch.
-* The rental price per hour should be defined at “per branch per vehicle type” level and NOT at an individual vehicle level. (eg. Sedan in CP branch = 150 rs/hr, Sedan in Vasant Vihar = 100 rs/hr, Hatchback in CP = 80rs/hr and so on)
-* A user can request to rent a particular vehicle type for a given time slot. You will have to allot the vehicle from one of the branches if available for the given time slot with the “lowest rental price” strategy.
-  The following functionalities have to be implemented:
-  Mandatory
-  Note: The given parameters are the mandatory parameters, you are free to add more parameters as part of your apis if you feel the need to do so. The return type of each api is up to you but make sure it provides the relevant information needed.
-1. addBranch(branchName) This will add a new branch for your Service.
-2. allocatePrice(branchName, vehicleType, price); This will be used to define price per vehicle type per branch
-3. addVehicle(vehicleId, vehicleType, branchName); This will add a new vehicle of the given vehicle type in a given existing branch.
-4. bookVehicle(vehicleType, startTime, endTime) This will be used to rent a vehicle for the given vehicle type for a given time slot defined by Start time and end time. You can expect the start time and endTime to be in hourly slots only.
-   Optional
+You have to design and implement a Vehicle Rental Service which allows users to rent a given type of Vehicle for a given time slot.
+
+**Requirements:**
+* This Vehicle Rental Service will be operational only in one city (Delhi) which will have multiple branches (eg. Vasant Vihar Branch, CP branch, etc).
+* Each branch can have three different types of vehicles (VehicleType) : Sedan, Hatchback, SUV. There could be any number of vehicles of each type in a branch.
+* The rental price per hour should be defined at “per branch per vehicle type” level and NOT at an individual vehicle level. (eg. Sedan in CP branch = 150 rs/hr, Sedan in Vasant Vihar = 100 rs/hr, Hatchback in CP = 80rs/hr and so on)
+* A user can request to rent a particular vehicle type for a given time slot. You will have to allot the vehicle from one of the branches if available for the given time slot with the “lowest rental price” strategy.
+ The following functionalities have to be implemented:
+ Mandatory
+ Note: The given parameters are the mandatory parameters, you are free to add more parameters as part of your apis if you feel the need to do so. The return type of each api is up to you but make sure it provides the relevant information needed.
+1. addBranch(branchName) This will add a new branch for your Service.
+2. allocatePrice(branchName, vehicleType, price); This will be used to define price per vehicle type per branch
+3. addVehicle(vehicleId, vehicleType, branchName); This will add a new vehicle of the given vehicle type in a given existing branch.
+4. bookVehicle(vehicleType, startTime, endTime) This will be used to rent a vehicle for the given vehicle type for a given time slot defined by Start time and end time. You can expect the start time and endTime to be in hourly slots only.
+ Optional
 1. viewVehicleInventory(startTime, endTime): This will give a snapshot of the inventory for the given time slot i.e. all the vehicles that are available for booking and all the vehicles that are not available categorised by vehicleType.
-   Guidelines:
+ Guidelines:
 1. Use any IDE
 2. Write a driver class for demo purposes. Which will execute all the commands at one place in the code and have test cases.
 3. You should store the data in-memory using a language-specific data-structure.
@@ -27,12 +29,12 @@ You have to design and implement a Vehicle Rental Service which allows users t
 8. Work on the expected output first and then add bonus features of your own.
 9. You can take the startTime and endTime as DateTime or in any other way as you prefer.
 10. The start time and end time will be in hourly granularity only.
-    Expectations:
+ Expectations:
 1. Your code should cover all the mandatory functionalities explained above.
 2. Your code should be executable and clean.
 3. Your code should be properly refactored, and exceptions should be gracefully handled.
 4. Please add any assumptions taken in a README file. Eg 1: Assume authentication and authorization are already taken care of. Eg 2: Assume you are building for a small business but extensible enough for future use cases
-   How will you be evaluated?
+ How will you be evaluated?
 * Code Should be working
 * Code readability and testability
 * Separation Of Concerns
